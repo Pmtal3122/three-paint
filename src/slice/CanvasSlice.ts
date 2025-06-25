@@ -1,13 +1,29 @@
 import { createSlice } from "@reduxjs/toolkit";
+import * as THREE from "three";
 
-interface canvasSlice {
-    camera: Object;
-    meshes: Object[];
-    lights: Object[];
+interface cameraInterface {
+    name: string;
+    cameraObject: THREE.PerspectiveCamera | null;
 }
 
-const initialState : canvasSlice = {
-    camera: {},
+interface meshesInterface {
+    name: string;
+    meshObject: THREE.Mesh;
+}
+
+interface lightsInterface {
+    name: string;
+    lightObject: THREE.Light;
+}
+
+interface canvasSliceInterface {
+    camera: cameraInterface | null;
+    meshes: meshesInterface[];
+    lights: lightsInterface[];
+}
+
+const initialState: canvasSliceInterface = {
+    camera: null,
     meshes: [],
     lights: []
 }
@@ -20,12 +36,16 @@ export const canvasSlice = createSlice({
             state.camera = action.payload;
         },
         addMesh: (state, action) => {
-            state.meshes.push(action.payload);
+            const existingMesh = state.meshes.find(mesh => mesh.name === action.payload.name);
+            if (!existingMesh) 
+                state.meshes.push(action.payload);
         },
         removeMesh: (state, action) => {
             state.meshes = state.meshes.splice(state.meshes.indexOf(action.payload), 1);
         },
         addLight: (state, action) => {
+            const existingLight = state.lights.find(light => light.name === action.payload.name);
+            if (!existingLight)
             state.lights.push(action.payload);
         },
         removeLight: (state, action) => {

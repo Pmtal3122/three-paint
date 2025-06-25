@@ -1,0 +1,17 @@
+::-webkit-scrollbar {
+    display: none;
+}
+
+#editorLeft {
+    color: white;
+    background-color: rgba(0, 0, 0, 0.2);
+    z-index: 5;
+    box-sizing: border-box;
+    margin: 0;
+    width: 30%;
+    border: 2px solid white;
+    overflow: scroll;
+    height: 100vh;
+    padding: 5px;
+    backdrop-filter: blur(2px);
+}
