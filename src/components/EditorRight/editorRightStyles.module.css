@@ -1,0 +1,13 @@
+#editorRight {
+    position: absolute;
+    top: 0;
+    right: 0;
+    color: white;
+    width: 25%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.2);
+    z-index: 5;
+    box-sizing: border-box;
+    margin: 0;
+    border: 2px solid white;
+}

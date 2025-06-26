@@ -7,6 +7,9 @@ import { addMesh, setCamera } from '../../slice/CanvasSlice';
 export default function CanvasComponent() {
 
     const containerRef: RefObject<HTMLDivElement | null> = useRef(null);
+    const cameraRef = useRef<THREE.PerspectiveCamera | null>(null);
+    // const meshesRef = useRef<THREE.Mesh[]>([]);
+    // const lightsRef = useRef<THREE.Light[]>([]);
 
     const dispatch = useDispatch();
 
@@ -15,7 +18,8 @@ export default function CanvasComponent() {
     const scene = new THREE.Scene();
     // Create a camera
     const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-    dispatch(setCamera({ name: 'MainCamera', cameraObject: camera }));
+    cameraRef.current = camera;
+    dispatch(setCamera({ name: 'MainCamera', cameraObject: cameraRef.current }));
     // Create a renderer
     const renderer = new THREE.WebGLRenderer({ antialias: true });
     renderer.setSize(window.innerWidth, window.innerHeight);
@@ -27,6 +31,7 @@ export default function CanvasComponent() {
     const material = new THREE.MeshBasicMaterial({ color: 0x00ff00, wireframe: true });
     // Create a mesh
     const cube = new THREE.Mesh(geometry, material);
+    // meshesRef.current.push(cube);
     dispatch(addMesh({ name: 'Cube1', meshObject: cube }));
     // Add the mesh to the scene
     scene.add(cube);

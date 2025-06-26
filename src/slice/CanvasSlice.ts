@@ -1,7 +1,7 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import * as THREE from "three";
 
-interface cameraInterface {
+export interface cameraInterface {
     name: string;
     cameraObject: THREE.PerspectiveCamera | null;
 }
@@ -32,7 +32,7 @@ export const canvasSlice = createSlice({
     name: 'canvas',
     initialState,
     reducers: {
-        setCamera: (state, action) => {
+        setCamera: (state, action: PayloadAction<cameraInterface>) => {
             state.camera = action.payload;
         },
         addMesh: (state, action) => {
