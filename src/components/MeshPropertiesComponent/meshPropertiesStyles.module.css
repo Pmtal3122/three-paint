@@ -1,0 +1,9 @@
+.scaleInputs {
+    visibility: hidden;
+    height: 0;
+}
+
+.scaleVisible {
+    visibility: visible;
+    height: auto;
+}
