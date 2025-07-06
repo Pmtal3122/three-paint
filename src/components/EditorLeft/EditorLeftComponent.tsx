@@ -1,4 +1,5 @@
-import React from 'react';
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useState } from 'react';
 import styles from './editorLeft.module.css';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
@@ -10,17 +11,20 @@ export default function EditorLeftComponent() {
   const meshes = useSelector((state: RootState) => state.canvas.meshes);
   const lights = useSelector((state: RootState) => state.canvas.lights);
 
+  const [activeObj, setActiveObj] = useState<any | null>(null);
+  const [activeObjType, setActiveObjType] = useState<string>('');
+
   return (
     <>
       <div id={styles.editorLeft}>
         <h2>Camera</h2>
         <ul>
-          <li>{camera !== null ? camera.name : null}</li>
+          <li onClick={() => {setActiveObj(camera); setActiveObjType('camera')}}>{camera !== null ? camera.name : null}</li>
         </ul>
         <h2>Meshes</h2>
         <ul>
           {
-            meshes.map((mesh) => <li key={mesh.meshObject['uuid']}>{mesh.name}</li>)
+            meshes.map((mesh) => <li onClick={() => {setActiveObj(mesh); setActiveObjType('mesh')}} key={mesh.meshObject['uuid']}>{mesh.name}</li>)
           }
         </ul>
         <h2>Lights</h2>
@@ -30,7 +34,7 @@ export default function EditorLeftComponent() {
           }
         </ul>
       </div>
-      {camera && <EditorRightComponent camera={camera} />}
+      {camera && <EditorRightComponent obj={activeObj} type={activeObjType} />}
       
     </>
   )

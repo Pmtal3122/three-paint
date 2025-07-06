@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { RefObject, useEffect, useRef } from 'react';
 import styles from './canvasStyles.module.css';
 import * as THREE from 'three';

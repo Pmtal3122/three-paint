@@ -6,12 +6,12 @@ export interface cameraInterface {
     cameraObject: THREE.PerspectiveCamera | null;
 }
 
-interface meshesInterface {
+export interface meshesInterface {
     name: string;
     meshObject: THREE.Mesh;
 }
 
-interface lightsInterface {
+export interface lightsInterface {
     name: string;
     lightObject: THREE.Light;
 }
