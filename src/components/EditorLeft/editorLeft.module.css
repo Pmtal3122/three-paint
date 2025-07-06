@@ -8,10 +8,32 @@
     z-index: 5;
     box-sizing: border-box;
     margin: 0;
-    width: 30%;
+    width: 25%;
     border: 2px solid white;
     overflow: scroll;
     height: 100vh;
     padding: 5px;
     backdrop-filter: blur(2px);
 }
+
+.listItem {
+    list-style: none;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    margin-right: 20%;
+    padding: 2px 6px;
+    border-radius: 6px;
+    color: rgba(255, 255, 255, 0.7);
+    font-weight: 100;
+    font-size: 12px;
+}
+
+.listItem:hover {
+    border: 2px solid transparent;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.listItemActive, .listItemActive:hover {
+    border: 2px solid white;
+}
+
+.cameraListItem {}
