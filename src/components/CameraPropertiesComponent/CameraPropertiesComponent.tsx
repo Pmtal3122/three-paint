@@ -3,6 +3,7 @@ import React, { useEffect } from 'react';
 import styles from './cameraProperties.module.css';
 import { cameraInterface } from '../../slice/CanvasSlice';
 import * as THREE from 'three';
+import { resetToDefault } from '../../utils/ResetValueToDefault';
 
 export default function CameraPropertiesComponent({ camera }: { camera: cameraInterface | null }) {
 
@@ -36,11 +37,14 @@ export default function CameraPropertiesComponent({ camera }: { camera: cameraIn
                     <label htmlFor="positionX">X: </label>
                     <input onChange={(e) => {
                         if (camera.cameraObject !== null) camera.cameraObject.position.x = Number(e.target.value)
-                    }} type="number" name="positionX" id="positionX" /> <br />
+                    }} type="number" name="positionX" id="positionX" />
+                    <button onClick={(e) => {if(camera.cameraObject) resetToDefault(camera.cameraObject.position, 'position', 'x', e.currentTarget.previousSibling)}}>Reset</button> <br />
                     <label htmlFor="positionY">Y: </label>
-                    <input onChange={(e) => { if (camera.cameraObject !== null) camera.cameraObject.position.y = Number(e.target.value) }} type="number" name="positionY" id="positionY" /> <br />
+                    <input onChange={(e) => { if (camera.cameraObject !== null) camera.cameraObject.position.y = Number(e.target.value) }} type="number" name="positionY" id="positionY" />
+                    <button onClick={(e) => {if(camera.cameraObject) resetToDefault(camera.cameraObject.position, 'position', 'y', e.currentTarget.previousSibling)}}>Reset</button> <br />
                     <label htmlFor="positionZ">Z: </label>
                     <input onChange={(e) => { if (camera.cameraObject !== null) camera.cameraObject.position.z = Number(e.target.value) }} type="number" name="positionZ" id="positionZ" />
+                    <button onClick={(e) => {if(camera.cameraObject) resetToDefault(camera.cameraObject.position, 'position', 'z', e.currentTarget.previousSibling)}}>Reset</button>
                 </div>
                 : null}
 
@@ -49,11 +53,14 @@ export default function CameraPropertiesComponent({ camera }: { camera: cameraIn
                 <div>
                     <h2>Rotation</h2>
                     <label htmlFor="rotationX">X: </label>
-                    <input onChange={(e) => { if (camera.cameraObject !== null) camera.cameraObject.rotation.x = THREE.MathUtils.degToRad(Number(e.target.value)) }} type="number" name="rotationX" id="rotationX" /> <br />
+                    <input onChange={(e) => { if (camera.cameraObject !== null) camera.cameraObject.rotation.x = THREE.MathUtils.degToRad(Number(e.target.value)) }} type="number" name="rotationX" id="rotationX" />
+                    <button onClick={(e) => {if(camera.cameraObject) resetToDefault(camera.cameraObject.rotation, 'rotation', 'x', e.currentTarget.previousSibling)}}>Reset</button> <br />
                     <label htmlFor="rotationY">Y: </label>
-                    <input onChange={(e) => { if (camera.cameraObject !== null) camera.cameraObject.rotation.y = THREE.MathUtils.degToRad(Number(e.target.value)) }} type="number" name="rotationY" id="rotationY" /> <br />
+                    <input onChange={(e) => { if (camera.cameraObject !== null) camera.cameraObject.rotation.y = THREE.MathUtils.degToRad(Number(e.target.value)) }} type="number" name="rotationY" id="rotationY" />
+                    <button onClick={(e) => {if(camera.cameraObject) resetToDefault(camera.cameraObject.rotation, 'rotation', 'y', e.currentTarget.previousSibling)}}>Reset</button> <br />
                     <label htmlFor="rotationZ">Z: </label>
                     <input onChange={(e) => { if (camera.cameraObject !== null) camera.cameraObject.rotation.z = THREE.MathUtils.degToRad(Number(e.target.value)) }} type="number" name="rotationZ" id="rotationZ" />
+                    <button onClick={(e) => {if(camera.cameraObject) resetToDefault(camera.cameraObject.rotation, 'rotation', 'z', e.currentTarget.previousSibling)}}>Reset</button>
                 </div>
             }
         </div>

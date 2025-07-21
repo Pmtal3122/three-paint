@@ -3,6 +3,7 @@ import React, { useEffect, useRef } from 'react'
 import styles from './meshPropertiesStyles.module.css';
 import { meshesInterface } from '../../slice/CanvasSlice'
 import * as THREE from 'three';
+import { resetToDefault } from '../../utils/ResetValueToDefault';
 
 export default function MeshPropertiesComponent({ mesh }: { mesh: meshesInterface | null }) {
 
@@ -74,11 +75,14 @@ export default function MeshPropertiesComponent({ mesh }: { mesh: meshesInterfac
                 <div>
                     <h2>Position</h2>
                     <label htmlFor="positionX">X: </label>
-                    <input type="number" id="positionX" onChange={(e) => { if (mesh) mesh.meshObject.position.x = Number(e.target.value) }} /> <br />
+                    <input type="number" id="positionX" onChange={(e) => { if (mesh) mesh.meshObject.position.x = Number(e.target.value) }} />
+                    <button onClick={(e) => {if(mesh) resetToDefault(mesh.meshObject.position, 'position', 'x', e.currentTarget.previousSibling)}}>Reset</button> <br />
                     <label htmlFor="positionY">Y: </label>
-                    <input type="number" id="positionY" onChange={(e) => { if (mesh) mesh.meshObject.position.y = Number(e.target.value) }} /> <br />
+                    <input type="number" id="positionY" onChange={(e) => { if (mesh) mesh.meshObject.position.y = Number(e.target.value) }} />
+                    <button onClick={(e) => {if(mesh) resetToDefault(mesh.meshObject.position, 'position', 'y', e.currentTarget.previousSibling)}}>Reset</button> <br />
                     <label htmlFor="positionZ">Z: </label>
                     <input type="number" id="positionZ" onChange={(e) => { if (mesh) mesh.meshObject.position.z = Number(e.target.value) }} />
+                    <button onClick={(e) => {if(mesh) resetToDefault(mesh.meshObject.position, 'position', 'z', e.currentTarget.previousSibling)}}>Reset</button>
                 </div>
             }
 
@@ -87,11 +91,14 @@ export default function MeshPropertiesComponent({ mesh }: { mesh: meshesInterfac
                     <div>
                         <h2>Rotation</h2>
                         <label htmlFor="rotationX">X: </label>
-                        <input type="number" id="rotationX" onChange={(e) => { if (mesh) mesh.meshObject.rotation.x = THREE.MathUtils.degToRad(Number(e.target.value)) }} /> <br />
+                        <input type="number" id="rotationX" onChange={(e) => { if (mesh) mesh.meshObject.rotation.x = THREE.MathUtils.degToRad(Number(e.target.value)) }} />
+                        <button onClick={(e) => {if(mesh) resetToDefault(mesh.meshObject.rotation, 'rotation', 'x', e.currentTarget.previousSibling)}}>Reset</button> <br />
                         <label htmlFor="rotationY">Y: </label>
-                        <input type="number" id="rotationY" onChange={(e) => { if (mesh) mesh.meshObject.rotation.y = THREE.MathUtils.degToRad(Number(e.target.value)) }} /> <br />
+                        <input type="number" id="rotationY" onChange={(e) => { if (mesh) mesh.meshObject.rotation.y = THREE.MathUtils.degToRad(Number(e.target.value)) }} />
+                        <button onClick={(e) => {if(mesh) resetToDefault(mesh.meshObject.rotation, 'rotation', 'y', e.currentTarget.previousSibling)}}>Reset</button> <br />
                         <label htmlFor="rotationZ">Z: </label>
                         <input type="number" id="rotationZ" onChange={(e) => { if (mesh) mesh.meshObject.rotation.z = THREE.MathUtils.degToRad(Number(e.target.value)) }} />
+                        <button onClick={(e) => {if(mesh) resetToDefault(mesh.meshObject.rotation, 'rotation', 'z', e.currentTarget.previousSibling)}}>Reset</button>
                     </div>
                 )
             }
@@ -111,15 +118,19 @@ export default function MeshPropertiesComponent({ mesh }: { mesh: meshesInterfac
                                 mesh.meshObject.scale.set(scaleValue, scaleValue, scaleValue);
                             }
                         }} />
+                        {/* <button onClick={(e) => {if(mesh) resetToDefault(mesh.meshObject.scale, 'scale', 'x', e.currentTarget.previousSibling)}}>Reset</button> */}
                     </div>
 
                     <div ref={scaleUncheckedRef} id={styles.scaleUnchecked} className={`${styles.scaleInputs} ${styles.scaleVisible}`}>
                         <label htmlFor="scaleX">ScaleX: </label>
-                        <input type="number" id="scaleX" onChange={(e) => { if (mesh) mesh.meshObject.scale.x = Number(e.target.value) }} /> <br />
+                        <input type="number" id="scaleX" onChange={(e) => { if (mesh) mesh.meshObject.scale.x = Number(e.target.value) }} />
+                        <button onClick={(e) => {if(mesh) resetToDefault(mesh.meshObject.scale, 'scale', 'x', e.currentTarget.previousSibling)}}>Reset</button> <br />
                         <label htmlFor="scaleY">ScaleY: </label>
-                        <input type="number" id="scaleY" onChange={(e) => { if (mesh) mesh.meshObject.scale.y = Number(e.target.value) }} /> <br />
+                        <input type="number" id="scaleY" onChange={(e) => { if (mesh) mesh.meshObject.scale.y = Number(e.target.value) }} />
+                        <button onClick={(e) => {if(mesh) resetToDefault(mesh.meshObject.scale, 'scale', 'y', e.currentTarget.previousSibling)}}>Reset</button> <br />
                         <label htmlFor="scaleZ">ScaleZ: </label>
                         <input type="number" id="scaleZ" onChange={(e) => { if (mesh) mesh.meshObject.scale.z = Number(e.target.value) }} />
+                        <button onClick={(e) => {if(mesh) resetToDefault(mesh.meshObject.scale, 'scale', 'z', e.currentTarget.previousSibling)}}>Reset</button>
                     </div>
                 </div>
             }
